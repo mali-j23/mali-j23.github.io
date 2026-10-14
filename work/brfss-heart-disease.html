@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heart disease in Connecticut: a BRFSS 2024 analysis | Muhammad Ali</title>
+<meta name="description" content="Survey-weighted SAS analysis of the 2024 Connecticut BRFSS: 8.75% reported heart disease, with a clear income gradient (OR 2.19 under $25K vs. $75K+).">
+<link rel="canonical" href="https://mali-j23.github.io/work/brfss-heart-disease.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heart disease in Connecticut: a BRFSS 2024 analysis | Muhammad Ali">
+<meta property="og:description" content="Survey-weighted SAS analysis of the 2024 Connecticut BRFSS: 8.75% reported heart disease, with a clear income gradient (OR 2.19 under $25K vs. $75K+).">
+<meta property="og:url" content="https://mali-j23.github.io/work/brfss-heart-disease.html">
+<meta property="og:image" content="https://mali-j23.github.io/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBFAF7">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#1F3A5F"/><path d="M6 23 L11 15 L15 18 L20 9 L26 13" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9" r="2.3" fill="#fff"/></svg><span class="brand-name">Muhammad Ali</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main"><ul><li><a href="../work/" aria-current="page">Work</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../about.html">About</a></li><li><a href="../resume.html">Résumé</a></li></ul></nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="wrap">
+<header class="page-head">
+  <p class="crumb"><a href="./">Work</a></p>
+  <h1>Heart disease and its socioeconomic gradient among Connecticut adults</h1>
+  <p class="lede">A survey-weighted analysis of the 2024 Connecticut BRFSS in SAS: how common reported heart disease is, and which behavioral and economic factors travel with it.</p>
+  <dl class="facts">
+    <div><dt>Where</dt><dd>Connecticut Department of Public Health</dd></div>
+    <div><dt>When</dt><dd>Spring internship, Feb to May 2026</dd></div>
+    <div><dt>Data</dt><dd>2024 Connecticut BRFSS, 7,213 adults</dd></div>
+    <div><dt>Output</dt><dd>Presented to CTDPH's Chronic Disease and Injury Prevention Section, Apr 27, 2026</dd></div>
+  </dl>
+</header>
+
+<div class="case">
+<article class="prose">
+  <h2>The question</h2>
+  <p>Heart disease is the leading cause of death in Connecticut. State screening and prevention programs need to know which adults carry the most burden. I looked at how prevalence and odds differ by sex, race and ethnicity, income, obesity, smoking, and access to a personal doctor.</p>
+
+  <h2>Data and outcome</h2>
+  <p>The 2024 Connecticut Behavioral Risk Factor Surveillance System, a state telephone survey of adults (7,213 respondents). The outcome is a composite I built from three self-reported diagnoses: heart attack, coronary heart disease, or stroke. Respondents who answered "no" to all three were coded 0; anyone with a missing answer and no "yes" was set to missing.</p>
+
+  <h2>What I did in SAS</h2>
+  <ul>
+    <li>Recoded raw BRFSS variables into analysis categories: income bands, race and ethnicity groups from <code>_RACEGR3</code>, obesity from <code>_BMI5CAT</code>, current smoking from <code>_RFSMOK3</code>, and personal doctor from <code>PERSDOC3</code>. Refused and don't-know answers were set to missing, except income, where they were kept as a separate category.</li>
+    <li>Estimated weighted prevalence with <code>PROC SURVEYFREQ</code> (Taylor series variance, strata <code>_STSTR</code>, clusters <code>_PSU</code>, weight <code>_LLCPWT</code>) and tested differences with the Rao-Scott chi-square.</li>
+    <li>Estimated unadjusted odds ratios with <code>PROC SURVEYLOGISTIC</code> under the same design. The script also specifies a full multivariable model; the results reported here are unadjusted.</li>
+  </ul>
+  <pre class="code" tabindex="0" aria-label="SAS code excerpt"><code><span class="c">/* Composite outcome: heart attack, coronary heart disease, or stroke */</span>
+<span class="k">array</span> first [3] CVDINFR4 CVDCRHD4 CVDSTRK3;
+<span class="k">array</span> second [3] HeartAtt CHD Stroke;
+<span class="k">do</span> re = 1 <span class="k">to</span> 3;
+    <span class="k">if</span> first[re] = 1 <span class="k">then</span> second[re] = 1;
+    <span class="k">else if</span> first[re] = 2 <span class="k">then</span> second[re] = 0;
+<span class="k">end</span>;
+
+<span class="c">/* Survey-weighted prevalence with Rao-Scott chi-square */</span>
+<span class="k">proc surveyfreq</span> data=brfss24ctv2 varmethod=taylor nomcar;
+    strata _STSTR; cluster _psu; weight _LLCPWT;
+    tables (sex RaceEth educat3cat obeseyn currentsmoker)*heartdis / row cl chisq;
+<span class="k">run</span>;
+
+<span class="c">/* Odds ratio for one predictor, design-adjusted */</span>
+<span class="k">proc surveylogistic</span> data=brfss24ctv2 nomcar;
+    strata _ststr; cluster _psu; weight _LLCPWT;
+    model heartdis(descending) = Inc25K Inc2549K Inc5074K IncMiss;
+<span class="k">run</span>;</code></pre>
+  <p class="small">Excerpt. <a href="../code/brfss_heart_disease_2024.sas">Download the full SAS program</a>.</p>
+
+  <h2>Results</h2>
+  <p>The weighted prevalence of reported heart disease among Connecticut adults was <strong>8.75%</strong> (95% CI 7.88 to 9.62).</p>
+  <figure class="figure panel">
+    <p class="panel-title">Weighted prevalence of reported heart disease</p>
+    <p class="panel-sub">Percent of Connecticut adults, 2024 BRFSS. p-values from the Rao-Scott chi-square.</p>
+    <div class="bars">
+<div class="bar-group" aria-hidden="true">Sex (p = 0.029)</div>
+<div class="bar-row" title="Male: 9.8%"><span class="bar-label">Male</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:69.71%"></span></span><span class="bar-val">9.8%</span></div>
+<div class="bar-row" title="Female: 7.8%"><span class="bar-label">Female</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:55.71%"></span></span><span class="bar-val">7.8%</span></div>
+<div class="bar-group" aria-hidden="true">Obesity (p = 0.007)</div>
+<div class="bar-row" title="Obese: 11.1%"><span class="bar-label">Obese</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:79.57%"></span></span><span class="bar-val">11.1%</span></div>
+<div class="bar-row" title="Not obese: 8.3%"><span class="bar-label">Not obese</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:59.36%"></span></span><span class="bar-val">8.3%</span></div>
+<div class="bar-group" aria-hidden="true">Smoking (p = 0.015)</div>
+<div class="bar-row" title="Current smoker: 12.5%"><span class="bar-label">Current smoker</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:89.07%"></span></span><span class="bar-val">12.5%</span></div>
+<div class="bar-row" title="Non-smoker: 8.7%"><span class="bar-label">Non-smoker</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:61.79%"></span></span><span class="bar-val">8.7%</span></div>
+<div class="bar-group" aria-hidden="true">Race and ethnicity (p = 0.30, not significant)</div>
+<div class="bar-row" title="Non-Hispanic White: 9.4%"><span class="bar-label">Non-Hispanic White</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:67.36%"></span></span><span class="bar-val">9.4%</span></div>
+<div class="bar-row" title="Non-Hispanic Black: 9.3%"><span class="bar-label">Non-Hispanic Black</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:66.36%"></span></span><span class="bar-val">9.3%</span></div>
+<div class="bar-row" title="Hispanic: 7.0%"><span class="bar-label">Hispanic</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:49.71%"></span></span><span class="bar-val">7.0%</span></div>
+<div class="bar-row" title="Other or multiracial: 8.0%"><span class="bar-label">Other or multiracial</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:57.14%"></span></span><span class="bar-val">8.0%</span></div>
+</div>
+  </figure>
+  <figure class="figure panel">
+    <p class="panel-title">Unadjusted odds of reported heart disease</p>
+    <p class="panel-sub">Odds ratios with 95% confidence intervals, survey-weighted.</p>
+    <div class="legend"><span><i class="key-dot"></i>CI excludes 1</span><span><i class="key-dot hollow"></i>CI includes 1</span></div>
+    <div class="forest" role="img" aria-label="Forest plot of unadjusted odds ratios for heart disease; the data table below lists every value.">
+<div class="forest-group" aria-hidden="true">Personal doctor (ref: none)</div>
+<div class="forest-row" title="Has a personal doctor: OR 3.23 (95% CI 1.92 to 5.43)" style="--ref:33.84%;--lo:57.96%;--hi:96.29%;--pt:77.12%"><span class="forest-label">Has a personal doctor</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">3.23 <span class="small">(1.92–5.43)</span></span></div>
+<div class="forest-group" aria-hidden="true">Household income (ref: $75K+)</div>
+<div class="forest-row" title="Under $25K: OR 2.19 (95% CI 1.56 to 3.06)" style="--ref:33.84%;--lo:50.35%;--hi:75.17%;--pt:62.77%"><span class="forest-label">Under $25K</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">2.19 <span class="small">(1.56–3.06)</span></span></div>
+<div class="forest-row" title="$25K to $49,999: OR 1.85 (95% CI 1.37 to 2.50)" style="--ref:33.84%;--lo:45.46%;--hi:67.69%;--pt:56.57%"><span class="forest-label">$25K to $49,999</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">1.85 <span class="small">(1.37–2.50)</span></span></div>
+<div class="forest-row" title="$50K to $74,999: OR 1.49 (95% CI 0.99 to 2.23) , CI includes 1" style="--ref:33.84%;--lo:33.50%;--hi:63.48%;--pt:48.49%"><span class="forest-label">$50K to $74,999</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt ns"></span></span><span class="forest-val">1.49 <span class="small">(0.99–2.23)</span></span></div>
+<div class="forest-group" aria-hidden="true">Behavior and body weight</div>
+<div class="forest-row" title="Current smoker: OR 1.50 (95% CI 1.08 to 2.10)" style="--ref:33.84%;--lo:36.68%;--hi:61.16%;--pt:48.91%"><span class="forest-label">Current smoker</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">1.50 <span class="small">(1.08–2.10)</span></span></div>
+<div class="forest-row" title="Obese (BMI): OR 1.38 (95% CI 1.09 to 1.75)" style="--ref:33.84%;--lo:37.02%;--hi:54.59%;--pt:45.81%"><span class="forest-label">Obese (BMI)</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">1.38 <span class="small">(1.09–1.75)</span></span></div>
+<div class="forest-group" aria-hidden="true">Demographics</div>
+<div class="forest-row" title="Female (ref: male): OR 0.78 (95% CI 0.63 to 0.97)" style="--ref:33.84%;--lo:16.60%;--hi:32.90%;--pt:24.76%"><span class="forest-label">Female (ref: male)</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">0.78 <span class="small">(0.63–0.97)</span></span></div>
+<div class="forest-row" title="Hispanic (ref: NH White): OR 0.72 (95% CI 0.52 to 1.00) , CI includes 1" style="--ref:33.84%;--lo:9.33%;--hi:33.91%;--pt:21.65%"><span class="forest-label">Hispanic (ref: NH White)</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt ns"></span></span><span class="forest-val">0.72 <span class="small">(0.52–1.00)</span></span></div>
+<div class="forest-axis" aria-hidden="true"><span></span><div class="ticks"><span style="left:8.24%">0.5</span><span style="left:33.84%">1</span><span style="left:59.43%">2</span><span style="left:85.03%">4</span></div><span></span><div class="axis-label">Odds ratio (log scale). Dashed line marks 1, no difference.</div></div>
+</div>
+    <details class="data-view"><summary>Show the numbers as a table</summary><div class="table-scroll"><table class="data"><thead><tr><th>Comparison</th><th>Group</th><th class="r">Odds ratio</th><th class="r">95% CI</th></tr></thead><tbody><tr><td>Has a personal doctor</td><td>Personal doctor (ref: none)</td><td class='r'>3.229</td><td class='r'>1.922 to 5.426</td></tr><tr><td>Under $25K</td><td>Household income (ref: $75K+)</td><td class='r'>2.189</td><td class='r'>1.564 to 3.063</td></tr><tr><td>$25K to $49,999</td><td>Household income (ref: $75K+)</td><td class='r'>1.851</td><td class='r'>1.370 to 2.501</td></tr><tr><td>$50K to $74,999</td><td>Household income (ref: $75K+)</td><td class='r'>1.487</td><td class='r'>0.991 to 2.232</td></tr><tr><td>Current smoker</td><td>Behavior and body weight</td><td class='r'>1.504</td><td class='r'>1.080 to 2.096</td></tr><tr><td>Obese (BMI)</td><td>Behavior and body weight</td><td class='r'>1.383</td><td class='r'>1.090 to 1.754</td></tr><tr><td>Female (ref: male)</td><td>Demographics</td><td class='r'>0.782</td><td class='r'>0.627 to 0.975</td></tr><tr><td>Hispanic (ref: NH White)</td><td>Demographics</td><td class='r'>0.719</td><td class='r'>0.515 to 1.002</td></tr></tbody></table></div></details>
+  </figure>
+  <ul>
+    <li><strong>A clear income gradient.</strong> Odds rose as income fell: 2.19 for adults under $25K and 1.85 for $25K to $49,999, compared with $75K or more. The $50K to $74,999 group was borderline (CI 0.99 to 2.23).</li>
+    <li><strong>Behavioral risk.</strong> Current smokers had 50% higher odds (OR 1.50) and adults with obesity 38% higher odds (OR 1.38).</li>
+    <li><strong>Sex.</strong> Women had lower odds than men (OR 0.78); prevalence was 7.80% vs. 9.76%.</li>
+    <li><strong>Race and ethnicity.</strong> Prevalence differences across groups were not statistically significant (p = 0.30).</li>
+  </ul>
+  <div class="callout">
+    <p><strong>Reading the personal-doctor result carefully.</strong> Adults with a personal doctor had 3.2 times the odds of reported heart disease. A doctor doesn't cause heart disease. People with regular care are more likely to be diagnosed and to report the diagnosis. That means BRFSS likely undercounts heart disease in adults without access, and the real income gap is probably wider than these numbers show.</p>
+  </div>
+
+  <h2>Recommendations in my report</h2>
+  <ul>
+    <li>Expand targeted cardiovascular screening in high-poverty communities, focused on residents earning under $25K.</li>
+    <li>Design outreach for men through workplaces and community organizations.</li>
+    <li>Build smoking cessation and obesity management into routine care for Medicaid and low-income populations.</li>
+    <li>Use mobile health units for screening in underserved areas, to find cases that surveillance currently misses.</li>
+  </ul>
+
+  <h2>Limitations</h2>
+  <ul>
+    <li>Cross-sectional and self-reported: these are associations, not causes, and diagnoses depend on access to care.</li>
+    <li>Odds ratios shown are unadjusted, so they don't account for confounding between income, smoking, obesity, and access.</li>
+    <li>The composite outcome combines heart attack, coronary heart disease, and stroke, which have different risk profiles.</li>
+  </ul>
+
+  <h2>What I did after</h2>
+  <p>In the summer session I mentored the incoming interns assigned to this BRFSS project, giving SAS coding guidance over Zoom and helping them structure their end-of-internship deliverables.</p>
+</article>
+<aside class="case-aside" aria-label="Project summary">
+  <h2>Methods</h2>
+  <ul><li>Complex survey weighting</li><li>Rao-Scott chi-square</li><li>Survey logistic regression</li><li>Odds ratios with 95% CI</li></ul>
+  <h2>Tools</h2>
+  <ul><li>SAS</li><li>PROC SURVEYFREQ</li><li>PROC SURVEYLOGISTIC</li></ul>
+  <h2>Files</h2>
+  <ul><li><a href="../code/brfss_heart_disease_2024.sas">SAS program (.sas)</a></li></ul>
+  <h2>Related</h2>
+  <ul><li><a href="https://www.linkedin.com/posts/mali-j23_heart-disease-in-connecticut-2024-brfss-ugcPost-7513240771441979392-JGFQ/">My LinkedIn post on this project</a></li><li><a href="ct-stroke-mortality.html">Stroke mortality trends</a></li></ul>
+</aside>
+</div>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Muhammad Ali, MPH candidate, University of New Haven</span>
+    <ul>
+      <li><a href="mailto:alikhanjasra23@gmail.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/mali-j23/" rel="me">LinkedIn</a></li>
+      <li><a href="../resume.html">Résumé</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
