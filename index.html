@@ -33,119 +33,137 @@
 </header>
 <main id="main">
 
-<section class="hero">
+<section class="intro">
   <div class="wrap">
-    <aside class="profile-card" aria-label="Profile">
-      <img class="portrait" src="assets/img/muhammad-ali.jpg" width="428" height="535" alt="Portrait of Muhammad Ali">
-      <h1>Muhammad Ali</h1>
-      <p class="role">Epidemiology and public health data analysis</p>
-      <ul class="profile-facts">
-        <li><span>Education</span>MPH, Epidemiology and Biostatistics, University of New Haven (Dec 2026)</li>
-        <li><span>Focus</span>Chronic disease and mortality surveillance</li>
-        <li><span>Tools</span>SAS, SPSS, R, Joinpoint</li>
-        <li><span>Based in</span>West Haven, CT. Open to relocating.</li>
-        <li><span>Languages</span>English, Urdu, Punjabi, Hindi</li>
-      </ul>
-    </aside>
-    <div class="hero-text">
-      <p class="lede">I work with surveillance and survey data to show where disease burden is rising and who carries the most of it.</p>
-      <p class="detail">I'm finishing an MPH in Epidemiology and Biostatistics at the University of New Haven (December 2026). At the Connecticut Department of Public Health I ran Joinpoint trend analysis on state stroke mortality and survey-weighted SAS models on BRFSS heart disease data.</p>
-      <p class="detail">Before moving to the U.S., I entered and mapped flood-related disease surveillance data at Pakistan's National Institute of Health and collected household data on barriers to immunization. I'm now a Research and Advocacy Fellow at UNH's WeEmbody Lab and serve on SOPHE's national Advocacy Committee.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="work/">See my work</a>
-        <a class="btn btn-quiet" href="resume.html">View résumé</a>
-        <a class="btn btn-quiet" href="https://www.linkedin.com/in/mali-j23/" rel="me">LinkedIn</a>
+    <div class="byline">
+      <img src="assets/img/muhammad-ali.jpg" width="428" height="535" alt="Portrait of Muhammad Ali">
+      <div>
+        <h1>Muhammad Ali</h1>
+        <p class="role">Epidemiology and public health data analysis</p>
+      </div>
+      <dl>
+        <div><dt>Education</dt><dd>MPH, Epidemiology and Biostatistics, University of New Haven (Dec 2026)</dd></div>
+        <div><dt>Focus</dt><dd>Chronic disease and mortality surveillance</dd></div>
+        <div><dt>Tools</dt><dd>SAS, SPSS, R, Joinpoint</dd></div>
+        <div><dt>Based in</dt><dd>West Haven, CT. Open to relocating.</dd></div>
+        <div><dt>Languages</dt><dd>English, Urdu, Punjabi, Hindi</dd></div>
+      </dl>
+    </div>
+    <div>
+      <p class="statement">I analyze surveillance and survey data to find where disease burden is rising, and which people the data may be missing.</p>
+      <div class="intro-body">
+        <p>I'm finishing an MPH in Epidemiology and Biostatistics at the University of New Haven (December 2026). At the Connecticut Department of Public Health I ran Joinpoint trend analysis of state stroke deaths and survey-weighted SAS models of heart disease in the BRFSS.</p>
+        <p>Before moving to the U.S., I entered and mapped flood-related disease surveillance data at Pakistan's National Institute of Health and collected household data on barriers to immunization. I'm now a Research and Advocacy Fellow at UNH's WeEmbody Lab.</p>
+      </div>
+      <div class="intro-links">
+        <a class="btn btn-primary" href="#studies">Read the studies</a>
+        <a href="resume.html">Résumé</a>
+        <a href="https://www.linkedin.com/in/mali-j23/" rel="me">LinkedIn</a>
+        <a href="mailto:alikhanjasra23@gmail.com">Email</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section featured" aria-labelledby="feat-h">
+<section class="study study--lead" id="studies" aria-labelledby="s1-h">
   <div class="wrap">
-    <figure class="panel" style="margin:0">
-      <p class="panel-title">What predicts reported heart disease in Connecticut?</p>
-      <p class="panel-sub">Unadjusted odds ratios with 95% confidence intervals, 2024 Connecticut BRFSS (n = 7,213 adults), survey-weighted in SAS.</p>
-      <div class="legend"><span><i class="key-dot"></i>CI excludes 1</span><span><i class="key-dot hollow"></i>CI includes 1</span></div>
-      <div class="forest" role="img" aria-label="Forest plot of unadjusted odds ratios for heart disease; the data table below lists every value.">
+    <p class="study-meta"><b>Professional practice</b>, Connecticut Department of Public Health, summer 2026</p>
+    <h2 id="s1-h">Connecticut's ischemic stroke death rate rose more than twice as fast as the nation's, 2018–2024</h2>
+    <div class="study-grid">
+      <figure class="fig">
+        <img src="assets/img/stroke-ischemic.png" width="1400" height="964" alt="Line chart of age-adjusted ischemic stroke death rates per 100,000, 2018 to 2024. Connecticut, the solid navy line, rises from about 3.1 to about 5.3 with an annual percent change of +15.43%. The United States, the dashed red line, rises from about 5.0 to about 6.5 with an annual percent change of +6.74%. Both trends are statistically significant.">
+        <figcaption><span class="fig-n">Figure 1.</span> Age-adjusted ischemic stroke mortality (ICD-10 I63) per 100,000, Connecticut and United States, 2018–2024. Annual percent change from Joinpoint regression; * significant at α = 0.05. Source: CDC WONDER. Figure from my poster.</figcaption>
+      </figure>
+      <div>
+        <dl class="qa">
+          <div><dt>The question</dt><dd>Is Connecticut's stroke mortality following the national trend, and which stroke subtype explains any difference?</dd></div>
+          <div><dt>What I found</dt><dd>Ischemic stroke drove the state's rise. Hemorrhagic stroke fell at about the same pace as it did nationally, so it wasn't the cause.</dd></div>
+        </dl>
+        <div class="apc" aria-label="Annual percent change in ischemic stroke mortality">
+          <div><span class="n ct">+15.4%</span><span class="lbl">per year, Connecticut</span></div>
+          <div><span class="n">+6.7%</span><span class="lbl">per year, United States</span></div>
+        </div>
+        <dl class="qa" style="margin-top:1rem">
+          <div><dt>Why it matters</dt><dd>Connecticut's rates are still below the national level, but they are moving faster in the wrong direction. That points prevention and surveillance toward ischemic stroke risk factors, and toward finding which towns and counties drive the trend.</dd></div>
+        </dl>
+        <a class="read-more" href="work/ct-stroke-mortality.html">Read the stroke mortality study</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="study study--flip" aria-labelledby="s2-h">
+  <div class="wrap">
+    <p class="study-meta"><b>Professional practice</b>, Connecticut Department of Public Health, spring 2026</p>
+    <h2 id="s2-h">In the 2024 BRFSS, the lowest-income adults in Connecticut had about twice the odds of reported heart disease</h2>
+    <div class="study-grid">
+      <div>
+        <dl class="qa">
+          <div><dt>The question</dt><dd>How common is reported heart disease among Connecticut adults, and how does it vary by income, behavior, and access to care?</dd></div>
+          <div><dt>What I found</dt><dd>Weighted prevalence was 8.75%. Odds rose as income fell (OR 2.19 under $25K vs. $75K or more), and were higher for current smokers (1.50) and adults with obesity (1.38).</dd></div>
+          <div><dt>A result to read carefully</dt><dd>Adults with a personal doctor had 3.2 times the odds of reporting heart disease. That most likely reflects who gets diagnosed, so the survey probably undercounts disease among people without regular care.</dd></div>
+        </dl>
+        <a class="read-more" href="work/brfss-heart-disease.html">Read the BRFSS heart disease study</a>
+      </div>
+      <figure class="fig">
+        <p class="fig-head">Unadjusted odds of reported heart disease</p>
+        <p class="fig-sub">Survey-weighted odds ratios with 95% confidence intervals, 2024 Connecticut BRFSS, 7,213 adults.</p>
+        <div class="legend"><span><i class="key-dot"></i>CI excludes 1</span><span><i class="key-dot hollow"></i>CI includes 1</span></div>
+        <div class="forest" role="img" aria-label="Forest plot of unadjusted odds ratios for heart disease; the data table below lists every value.">
+<div class="forest-group" aria-hidden="true">Personal doctor (ref: none)</div>
 <div class="forest-row" title="Has a personal doctor: OR 3.23 (95% CI 1.92 to 5.43)" style="--ref:33.84%;--lo:57.96%;--hi:96.29%;--pt:77.12%"><span class="forest-label">Has a personal doctor</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">3.23 <span class="small">(1.92–5.43)</span></span></div>
+<div class="forest-group" aria-hidden="true">Household income (ref: $75K+)</div>
 <div class="forest-row" title="Under $25K: OR 2.19 (95% CI 1.56 to 3.06)" style="--ref:33.84%;--lo:50.35%;--hi:75.17%;--pt:62.77%"><span class="forest-label">Under $25K</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">2.19 <span class="small">(1.56–3.06)</span></span></div>
 <div class="forest-row" title="$25K to $49,999: OR 1.85 (95% CI 1.37 to 2.50)" style="--ref:33.84%;--lo:45.46%;--hi:67.69%;--pt:56.57%"><span class="forest-label">$25K to $49,999</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">1.85 <span class="small">(1.37–2.50)</span></span></div>
 <div class="forest-row" title="$50K to $74,999: OR 1.49 (95% CI 0.99 to 2.23) , CI includes 1" style="--ref:33.84%;--lo:33.50%;--hi:63.48%;--pt:48.49%"><span class="forest-label">$50K to $74,999</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt ns"></span></span><span class="forest-val">1.49 <span class="small">(0.99–2.23)</span></span></div>
+<div class="forest-group" aria-hidden="true">Behavior and body weight</div>
 <div class="forest-row" title="Current smoker: OR 1.50 (95% CI 1.08 to 2.10)" style="--ref:33.84%;--lo:36.68%;--hi:61.16%;--pt:48.91%"><span class="forest-label">Current smoker</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">1.50 <span class="small">(1.08–2.10)</span></span></div>
 <div class="forest-row" title="Obese (BMI): OR 1.38 (95% CI 1.09 to 1.75)" style="--ref:33.84%;--lo:37.02%;--hi:54.59%;--pt:45.81%"><span class="forest-label">Obese (BMI)</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">1.38 <span class="small">(1.09–1.75)</span></span></div>
+<div class="forest-group" aria-hidden="true">Demographics</div>
 <div class="forest-row" title="Female (ref: male): OR 0.78 (95% CI 0.63 to 0.97)" style="--ref:33.84%;--lo:16.60%;--hi:32.90%;--pt:24.76%"><span class="forest-label">Female (ref: male)</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt"></span></span><span class="forest-val">0.78 <span class="small">(0.63–0.97)</span></span></div>
 <div class="forest-row" title="Hispanic (ref: NH White): OR 0.72 (95% CI 0.52 to 1.00) , CI includes 1" style="--ref:33.84%;--lo:9.33%;--hi:33.91%;--pt:21.65%"><span class="forest-label">Hispanic (ref: NH White)</span><span class="forest-track" aria-hidden="true"><span class="forest-ci"></span><span class="forest-pt ns"></span></span><span class="forest-val">0.72 <span class="small">(0.52–1.00)</span></span></div>
 <div class="forest-axis" aria-hidden="true"><span></span><div class="ticks"><span style="left:8.24%">0.5</span><span style="left:33.84%">1</span><span style="left:59.43%">2</span><span style="left:85.03%">4</span></div><span></span><div class="axis-label">Odds ratio (log scale). Dashed line marks 1, no difference.</div></div>
 </div>
-    </figure>
-    <div class="note">
-      <h2 id="feat-h">A result worth reading carefully</h2>
-      <p>In the 2024 BRFSS, adults earning under $25K had about twice the odds of reported heart disease compared with those earning $75K or more. Smoking and obesity raised the odds too.</p>
-      <p>The largest odds ratio belongs to having a personal doctor (3.2). That's a sign of who gets diagnosed. Adults without regular care are likely undercounted, so the real income gap is probably wider than the survey shows.</p>
-      <p><a href="work/brfss-heart-disease.html">Read the BRFSS case study</a></p>
+        <figcaption><span class="fig-n">Figure 2.</span> Each row compares one group with its reference group, shown in the group heading. Estimates are not adjusted for the other factors. Analysis in SAS (PROC SURVEYLOGISTIC).</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="section" aria-labelledby="work-h">
+<section class="study study--compact" aria-labelledby="s3-h">
   <div class="wrap">
-    <div class="section-head">
+    <p class="study-meta"><b>Academic research</b>, undergraduate thesis, Bahria University, 2024</p>
+    <h2 id="s3-h">Practitioners in Islamabad and Rawalpindi were ready for telemedicine. Most didn't know enough about it yet.</h2>
+    <div class="study-grid">
       <div>
-        <h2 id="work-h">Selected work</h2>
-        <p>Three projects, each with the data, methods, findings, and limitations laid out.</p>
+        <dl class="qa">
+          <div><dt>The question</dt><dd>What do healthcare practitioners know about telemedicine, how do they see it, and would they adopt it?</dd></div>
+          <div><dt>What I found</dt><dd>In a survey of 120 practitioners, three in four were positive about telemedicine and willing to use it, but three in four also scored as having poor knowledge of it.</dd></div>
+          <div><dt>Why it matters</dt><dd>Where attitude is already favorable, training is the more likely lever for adoption.</dd></div>
+        </dl>
+        <a class="read-more" href="work/telemedicine-thesis.html">Read the telemedicine thesis</a>
       </div>
-      <a href="work/">All projects and code</a>
-    </div>
-    <div class="work-list">
-      <article class="work-row">
-        <a class="thumb" href="work/ct-stroke-mortality.html" aria-hidden="true" tabindex="-1"><img src="assets/img/stroke-ischemic.png" width="1400" height="964" loading="lazy" alt="Line chart of ischemic stroke age-adjusted death rates, 2018 to 2024. Connecticut rises from about 3 to about 5 per 100,000 (annual percent change +15.43%); the U.S. rises from about 5 to about 6.5 (+6.74%)."></a>
-        <div>
-          <h3><a href="work/ct-stroke-mortality.html">Stroke death rates in Connecticut vs. the U.S., 2018–2024</a></h3>
-          <p class="work-meta">Connecticut Department of Public Health, summer 2026</p>
-          <p>Age-adjusted mortality from CDC WONDER, split by stroke subtype and tested for trend changes with Joinpoint regression.</p>
-          <p class="finding">Connecticut's ischemic stroke death rate rose 15.4% per year, more than double the national 6.7%. Hemorrhagic stroke was not the driver.</p>
-          <p class="tools"><b>Used:</b> CDC WONDER, ICD-10 coding, age adjustment, Joinpoint (NCI)</p>
-        </div>
-      </article>
-      <article class="work-row">
-        <a class="thumb" href="work/brfss-heart-disease.html" aria-hidden="true" tabindex="-1">
-          <div style="padding:.4rem .5rem"><p class="thumb-title">Weighted prevalence of reported heart disease, CT adults 2024</p><div class="bars">
-<div class="bar-group" aria-hidden="true">Sex (p = 0.029)</div>
-<div class="bar-row" title="Male: 9.8%"><span class="bar-label">Male</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:69.71%"></span></span><span class="bar-val">9.8%</span></div>
-<div class="bar-row" title="Female: 7.8%"><span class="bar-label">Female</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:55.71%"></span></span><span class="bar-val">7.8%</span></div>
-<div class="bar-group" aria-hidden="true">Obesity (p = 0.007)</div>
-<div class="bar-row" title="Obese: 11.1%"><span class="bar-label">Obese</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:79.57%"></span></span><span class="bar-val">11.1%</span></div>
-<div class="bar-row" title="Not obese: 8.3%"><span class="bar-label">Not obese</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:59.36%"></span></span><span class="bar-val">8.3%</span></div>
-<div class="bar-group" aria-hidden="true">Smoking (p = 0.015)</div>
-<div class="bar-row" title="Current smoker: 12.5%"><span class="bar-label">Current smoker</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:89.07%"></span></span><span class="bar-val">12.5%</span></div>
-<div class="bar-row" title="Non-smoker: 8.7%"><span class="bar-label">Non-smoker</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:61.79%"></span></span><span class="bar-val">8.7%</span></div>
-</div></div>
-        </a>
-        <div>
-          <h3><a href="work/brfss-heart-disease.html">Heart disease and its socioeconomic gradient in Connecticut</a></h3>
-          <p class="work-meta">Connecticut Department of Public Health, spring 2026</p>
-          <p>Cleaned and recoded the 2024 Connecticut BRFSS in SAS, then estimated weighted prevalence and design-adjusted odds ratios.</p>
-          <p class="finding">Adults earning under $25K had about twice the odds of reported heart disease (OR 2.19) compared with those earning $75K or more.</p>
-          <p class="tools"><b>Used:</b> SAS, PROC SURVEYFREQ, PROC SURVEYLOGISTIC, BRFSS weights</p>
-        </div>
-      </article>
-      <article class="work-row">
-        <a class="thumb" href="work/telemedicine-thesis.html" aria-hidden="true" tabindex="-1">
-          <div style="padding:.6rem .5rem"><p class="thumb-title">Share of 120 practitioners scoring 60% or higher</p><div class="bars">
+      <figure class="fig">
+        <p class="fig-head">Knowledge, perception and willingness</p>
+        <p class="fig-sub">Percent of respondents scoring 60% or higher on each scale, as reported in the thesis.</p>
+        <div class="bars">
 <div class="bar-row" title="Positive perception of telemedicine: 76.0%"><span class="bar-label">Positive perception of telemedicine</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:76.00%"></span></span><span class="bar-val">76.0%</span></div>
 <div class="bar-row" title="High willingness to adopt: 77.7%"><span class="bar-label">High willingness to adopt</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:77.70%"></span></span><span class="bar-val">77.7%</span></div>
 <div class="bar-row" title="Good knowledge of telemedicine: 24.0%"><span class="bar-label">Good knowledge of telemedicine</span><span class="bar-track" aria-hidden="true"><span class="bar-fill light" style="--w:24.00%"></span></span><span class="bar-val">24.0%</span></div>
-</div></div>
-        </a>
-        <div>
-          <h3><a href="work/telemedicine-thesis.html">How practitioners in Islamabad and Rawalpindi see telemedicine</a></h3>
-          <p class="work-meta">Undergraduate thesis, Bahria University, 2024</p>
-          <p>A cross-sectional survey of 120 healthcare practitioners, built on the Technology Acceptance Model and analyzed in SPSS.</p>
-          <p class="finding">Three in four were positive about telemedicine, but only one in four scored as having good knowledge of it. Training, not attitude, was the gap.</p>
-          <p class="tools"><b>Used:</b> survey design, SPSS, Technology Acceptance Model, Diffusion of Innovation</p>
-        </div>
-      </article>
+</div>
+        <figcaption><span class="fig-n">Figure 3.</span> Cross-sectional survey built on the Technology Acceptance Model and Diffusion of Innovation theory, analyzed in SPSS.</figcaption>
+      </figure>
     </div>
+  </div>
+</section>
+
+<section class="study study--slim" aria-labelledby="ow-h">
+  <div class="wrap other-work">
+    <div>
+      <h2 id="ow-h" style="margin-bottom:.7rem">More work</h2>
+      <p>A study protocol on arsenic in drinking water and ischemic stroke in rural Bangladesh, SAS and R code, and other MPH and BSPH projects.</p>
+    </div>
+    <a class="read-more" href="work/">See all work and code</a>
   </div>
 </section>
 
@@ -157,50 +175,10 @@
     </div>
     <ol class="timeline">
       <li><span class="when">Aug 2026 to now</span><div><h3>Research and Advocacy Fellow</h3><p class="org">WeEmbody Lab, University of New Haven</p></div></li>
-      <li><span class="when">Feb to Aug 2026</span><div><h3>Public Health Intern <span class="status">Completed</span></h3><p class="org">Connecticut Department of Public Health, Hartford</p></div></li>
+      <li><span class="when">Feb to Aug 2026 (completed)</span><div><h3>Public Health Intern</h3><p class="org">Connecticut Department of Public Health, Hartford</p></div></li>
       <li><span class="when">Aug to Sep 2023</span><div><h3>Community Data Intern</h3><p class="org">National Institute of Health, Islamabad, field project with UNHCR</p></div></li>
       <li><span class="when">Aug to Oct 2022</span><div><h3>Intern, Field Epidemiology and Disease Surveillance Division</h3><p class="org">National Institute of Health, Islamabad</p></div></li>
     </ol>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="skills-h">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2 id="skills-h">What I work with</h2>
-        <p>Only tools and methods I've used in the projects on this site.</p>
-      </div>
-    </div>
-    <div class="skills">
-      <div>
-        <h3>Epidemiology and surveillance</h3>
-        <ul>
-          <li><b>Mortality trends:</b> age-adjusted rates, direct standardization, Joinpoint APC</li>
-          <li><b>Survey data:</b> BRFSS complex design, weighting, strata and clusters</li>
-          <li><b>Coding:</b> ICD-10 cause-of-death groupings</li>
-          <li><b>Surveillance systems:</b> CDC WONDER, DHIS2</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Statistics and software</h3>
-        <ul>
-          <li><b>SAS:</b> data step recoding, PROC SURVEYFREQ, PROC SURVEYLOGISTIC</li>
-          <li><b>SPSS:</b> survey scoring and descriptive analysis (thesis)</li>
-          <li><b>R:</b> regression, chi-square, t-tests, ANOVA, ggplot2 (coursework, still building)</li>
-          <li><b>Joinpoint Regression Program</b> (NCI) and Excel</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Research and practice</h3>
-        <ul>
-          <li><b>Study design:</b> cross-sectional surveys, case-cohort protocol design</li>
-          <li><b>Evidence synthesis:</b> scoping review, policy briefs</li>
-          <li><b>Communication:</b> posters and briefings for agency staff and leadership</li>
-          <li><b>Field data collection</b> in Urdu, Punjabi, and Hindi</li>
-        </ul>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -209,12 +187,12 @@
     <div class="section-head">
       <div>
         <h2 id="posts-h">On LinkedIn</h2>
-        <p>Short write-ups of my projects for a general audience.</p>
+        <p>Short write-ups of these studies for a general audience.</p>
       </div>
     </div>
     <ul class="more">
-      <li><h3><a href="https://www.linkedin.com/posts/mali-j23_publichealth-mph-healthpolicy-share-7495878154767593472-Ne0C/">Connecticut's ischemic stroke deaths are climbing twice as fast as the nation's</a></h3><p>What the CDC WONDER and Joinpoint analysis found, and what I recommended to CTDPH leadership.</p></li>
-      <li><h3><a href="https://www.linkedin.com/posts/mali-j23_heart-disease-in-connecticut-2024-brfss-ugcPost-7513240771441979392-JGFQ/">Heart disease in Connecticut: the 2024 BRFSS</a></h3><p>The income gradient, and why the personal-doctor result points to undercounting rather than risk.</p></li>
+      <li><h3><a href="https://www.linkedin.com/posts/mali-j23_publichealth-mph-healthpolicy-share-7495878154767593472-Ne0C/">Connecticut's ischemic stroke deaths are climbing twice as fast as the nation's</a></h3><p>The CDC WONDER and Joinpoint findings, and what I recommended to CTDPH leadership.</p></li>
+      <li><h3><a href="https://www.linkedin.com/posts/mali-j23_heart-disease-in-connecticut-2024-brfss-ugcPost-7513240771441979392-JGFQ/">Heart disease in Connecticut: the 2024 BRFSS</a></h3><p>The income gradient, and why the personal-doctor result points to undercounting.</p></li>
       <li><h3><a href="https://www.linkedin.com/posts/mali-j23_publichealth-mph-networking-ugcPost-7506755749532942337-hAEg/">Presenting at the CT Public Health Next Gen Workforce Showcase</a></h3><p>My poster on a culturally tailored exercise intervention for hypertension in Islamabad.</p></li>
     </ul>
   </div>
