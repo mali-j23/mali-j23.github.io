@@ -419,3 +419,4 @@ pre code { background: none; padding: 0; font-size: inherit; }
 .more h3 a:hover { color: var(--accent-text); }
 .portrait-lg { width: 100%; max-width: 18rem; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); margin-bottom: 1.2rem; display: block; }
 .featured .note h2 { margin-bottom: .9rem; }
+.brand-mark { border-radius: 7px; box-shadow: 0 0 0 1px #34433A; }
