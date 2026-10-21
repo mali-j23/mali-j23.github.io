@@ -18,7 +18,7 @@ assets/css/site.css        All styling (colors and fonts are set at the top)
 assets/js/site.js          Mobile menu and print button
 assets/img/                Figures, favicon, social share image
 assets/fonts/              Newsreader, Public Sans, JetBrains Mono (SIL Open Font License)
-code/                      SAS and R code shown on the site
+code/                      SAS code shown on the site
 ```
 
 ## Preview locally

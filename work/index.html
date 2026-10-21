@@ -92,23 +92,6 @@
   <div class="cs-main">
     <h3 style="margin-bottom:.4rem">BRFSS heart disease analysis (SAS)</h3>
     <p>Variable recoding, survey-weighted prevalence, and unadjusted and adjusted logistic models. <a href="../code/brfss_heart_disease_2024.sas">Download brfss_heart_disease_2024.sas</a></p>
-    <h3 style="margin:1.6rem 0 .4rem">Biostatistics in R (coursework)</h3>
-    <p>My MPH biostatistics final exam (PUBH 6625): correlation, regression, t-tests, ANOVA, chi-square and nonparametric tests on public teaching datasets. I'm still building my R skills.</p>
-    <pre class="code" tabindex="0" aria-label="R code excerpt"><code><span class="c"># Logistic regression: diabetes by age and BMI (Pima Indians data)</span>
-df &lt;- na.omit(PimaIndiansDiabetes2[, c("diabetes", "age", "mass")])
-model &lt;- glm(diabetes ~ age + mass, data = df, family = "binomial")
-summary(model)
-exp(coef(model))   <span class="c"># odds ratios</span>
-
-<span class="c"># Chi-square test of independence: current smoking by education (NHANES)</span>
-df &lt;- na.omit(NHANES[, c("SmokeNow", "Education")])
-tbl &lt;- table(df$SmokeNow, df$Education)
-chisq.test(tbl)
-
-<span class="c"># Two-way ANOVA: BMI by race and gender (NHANES)</span>
-df &lt;- na.omit(NHANES[, c("BMI", "Race1", "Gender")])
-summary(aov(BMI ~ Race1 * Gender, data = df))</code></pre>
-    <p><a href="../code/biostatistics_final_exam.R">Download biostatistics_final_exam.R</a></p>
   </div>
 </section>
 <div style="padding-bottom:3rem"></div>
