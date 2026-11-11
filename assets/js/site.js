@@ -1,4 +1,4 @@
-// Mobile navigation toggle and résumé print button. No tracking, no external calls.
+// Mobile navigation toggle and resume print button. No tracking, no external calls.
 (function () {
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');

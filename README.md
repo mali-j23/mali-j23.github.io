@@ -12,7 +12,7 @@ work/index.html            Case-study list, code, other projects
 work/*.html                One page per case study
 experience.html            Timeline of roles
 about.html                 Bio, education, publication, presentations, certifications
-resume.html                Web résumé with a "Print or save as PDF" button
+resume.html                Web resume with a "Print or save as PDF" button
 404.html                   Not-found page
 assets/css/site.css        All styling (colors and fonts are set at the top)
 assets/js/site.js          Mobile menu and print button
@@ -33,7 +33,7 @@ GitHub Pages serves the `main` branch from the repository root. Any commit to `m
 
 **Add a project.** Copy one of the files in `work/` (for example `work/telemedicine-thesis.html`), rename it, and replace the text. Add a link to it in `work/index.html`, and to the home page under "Selected work" if it should be featured. Put any images in `assets/img/` and give each one alt text that describes what the chart shows.
 
-**Add a résumé PDF.** Save it as `assets/resume/Muhammad_Ali_Resume.pdf`, then add a link on `resume.html` next to the print button:
+**Add a resume PDF.** Save it as `assets/resume/Muhammad_Ali_Resume.pdf`, then add a link on `resume.html` next to the print button:
 `<a class="btn btn-quiet" href="assets/resume/Muhammad_Ali_Resume.pdf">Download PDF</a>`.
 Remove your phone number from the PDF first; this site is public.
 
