@@ -6,7 +6,7 @@
 <title>Heart disease in Connecticut: a BRFSS 2024 analysis | Muhammad Ali</title>
 <meta name="description" content="Survey-weighted SAS analysis of the 2024 Connecticut BRFSS: 8.75% reported heart disease, with an income gradient (OR 2.19 under $25K vs. $75K+).">
 <link rel="canonical" href="https://mali-j23.github.io/work/brfss-heart-disease.html">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Heart disease in Connecticut: a BRFSS 2024 analysis | Muhammad Ali">
 <meta property="og:description" content="Survey-weighted SAS analysis of the 2024 Connecticut BRFSS: 8.75% reported heart disease, with an income gradient (OR 2.19 under $25K vs. $75K+).">
 <meta property="og:url" content="https://mali-j23.github.io/work/brfss-heart-disease.html">
@@ -14,33 +14,32 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101214">
+<meta name="theme-color" content="#082028">
 <link rel="icon" href="../assets/img/icon-pt-v7.svg" type="image/svg+xml">
 <link rel="icon" href="../assets/img/icon-pt-v7-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../apple-touch-icon-v7.png">
-<link rel="preload" href="../assets/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<script>document.documentElement.classList.add("js")</script>
-<link rel="stylesheet" href="../assets/css/site.css?v=6">
+<link rel="stylesheet" href="../assets/css/site.css?v=8">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#172025"/><stop offset="1" stop-color="#0D1012"/></linearGradient><linearGradient id="mk-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8BE3EF"/><stop offset="1" stop-color="#0E7490"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#mk-bg)"/><rect x=".5" y=".5" width="63" height="63" rx="14.5" fill="none" stroke="#FFFFFF" stroke-opacity=".06"/><path d="M25.5 13h13v12.5h12.5v13h-12.5v12.5h-13v-12.5h-12.5v-13h12.5z" fill="url(#mk-g)"/><polyline points="8,47 23,38 34,42 56,18" fill="none" stroke="#121619" stroke-width="6.4" stroke-linejoin="miter" stroke-miterlimit="8"/><polyline points="8,47 23,38 34,42 56,18" fill="none" stroke="#F2FBFD" stroke-width="2.6" stroke-linejoin="miter" stroke-miterlimit="8"/></svg><span class="brand-name">Muhammad Ali</span></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    <nav class="nav" id="site-nav" aria-label="Main"><ul><li><a href="../work/" aria-current="page">Work</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../about.html">About</a></li><li><a href="../resume.html">Resume</a></li></ul></nav>
+    <nav class="nav" aria-label="Main"><ul><li><a href="../work/index.html" aria-current="page">Work</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../about.html">About</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact" class="nav-cta">Contact</a></li></ul></nav>
   </div>
 </header>
 <main id="main">
 
 <div class="wrap">
 <header class="cs-head">
-  <p class="cs-type">Professional practice, Connecticut Department of Public Health. <a href="./">All work</a></p>
+  <p class="cs-type"><a href="index.html">Work</a> / Professional practice, Connecticut Department of Public Health</p>
   <h1>Heart disease and its income gradient among Connecticut adults</h1>
   <p class="dek">A survey-weighted analysis of the 2024 Connecticut BRFSS in SAS: how common reported heart disease is, and which groups carry more of it.</p>
 </header>
-<section class="summary" aria-labelledby="sum-h"><h2 id="sum-h">Study summary</h2><dl><dt>Question</dt><dd>How common is reported heart disease among Connecticut adults, and how does it vary by sex, race and ethnicity, income, smoking, obesity, and access to a personal doctor?</dd><dt>Why it matters</dt><dd>Heart disease is the leading cause of death in Connecticut. Screening and prevention programs need to know which adults carry the most burden.</dd><dt>Data and population</dt><dd>2024 Connecticut Behavioral Risk Factor Surveillance System, a statewide telephone survey of adults; 7,213 respondents. Outcome: ever told of a heart attack, coronary heart disease, or stroke (a composite I built from three BRFSS items).</dd><dt>My role</dt><dd>Spring 2026 internship project with guidance from Stephanie Poulin. I recoded the variables, wrote and ran the SAS analysis, interpreted the results, presented them to CTDPH's Chronic Disease and Injury Prevention Section, and wrote the report.</dd><dt>Methods</dt><dd>Weighted prevalence with PROC SURVEYFREQ (Taylor series variance, Rao-Scott chi-square). Unadjusted odds ratios with PROC SURVEYLOGISTIC. Both use the BRFSS strata, clusters and final weights.</dd><dt>Main finding</dt><dd>Weighted prevalence was 8.75% (95% CI 7.88–9.62). Adults earning under $25K had about twice the odds of reported heart disease compared with those earning $75K or more (OR 2.19, 95% CI 1.56–3.06).</dd><dt>What it may mean</dt><dd>Burden follows income, smoking and obesity. The personal-doctor result (OR 3.23) most likely reflects diagnosis, which would mean the survey undercounts heart disease among adults without regular care.</dd><dt>Limitations</dt><dd>Cross-sectional and self-reported, so these are associations, not causes. Odds ratios are unadjusted. The composite outcome combines conditions with different risk profiles.</dd></dl></section>
+<section class="keyfinding" aria-label="Main finding"><p class="kf-label">Main finding</p><p class="kf-text">Weighted prevalence was 8.75% (95% CI 7.88–9.62). Adults earning under $25K had about twice the odds of reported heart disease compared with those earning $75K or more (OR 2.19, 95% CI 1.56–3.06).</p></section>
+<section class="summary" aria-labelledby="sum-h"><h2 id="sum-h">Study summary</h2><dl><div><dt>Question</dt><dd>How common is reported heart disease among Connecticut adults, and how does it vary by sex, race and ethnicity, income, smoking, obesity, and access to a personal doctor?</dd></div><div><dt>Why it matters</dt><dd>Heart disease is the leading cause of death in Connecticut. Screening and prevention programs need to know which adults carry the most burden.</dd></div><div><dt>Data and population</dt><dd>2024 Connecticut Behavioral Risk Factor Surveillance System, a statewide telephone survey of adults; 7,213 respondents. Outcome: ever told of a heart attack, coronary heart disease, or stroke (a composite I built from three BRFSS items).</dd></div><div><dt>My role</dt><dd>Spring 2026 internship project with guidance from Stephanie Poulin. I recoded the variables, wrote and ran the SAS analysis, interpreted the results, presented them to CTDPH's Chronic Disease and Injury Prevention Section, and wrote the report.</dd></div><div><dt>Methods</dt><dd>Weighted prevalence with PROC SURVEYFREQ (Taylor series variance, Rao-Scott chi-square). Unadjusted odds ratios with PROC SURVEYLOGISTIC. Both use the BRFSS strata, clusters and final weights.</dd></div><div><dt>What it may mean</dt><dd>Burden follows income, smoking and obesity. The personal-doctor result (OR 3.23) most likely reflects diagnosis, which would mean the survey undercounts heart disease among adults without regular care.</dd></div><div><dt>Limitations</dt><dd>Cross-sectional and self-reported, so these are associations, not causes. Odds ratios are unadjusted. The composite outcome combines conditions with different risk profiles.</dd></div></dl></section>
 
 <section class="cs-sec"><h2>Prevalence</h2><div class="cs-main wide"><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table class="data nowrap">
 <caption>Table 1. Weighted prevalence of reported heart disease, Connecticut adults, 2024</caption>
@@ -140,6 +139,6 @@
     </ul>
   </div>
 </footer>
-<script src="../assets/js/site.js?v=5" defer></script>
+<script src="../assets/js/site.js?v=8" defer></script>
 </body>
 </html>
