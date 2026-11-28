@@ -47,7 +47,7 @@
         ev.preventDefault();
         opener = a;
         img.src = a.getAttribute('data-full');
-        img.alt = 'Certificate: ' + a.getAttribute('data-caption');
+        img.alt = a.getAttribute('data-alt') || ('Certificate: ' + a.getAttribute('data-caption'));
         cap.textContent = a.getAttribute('data-caption');
         dlg.showModal();
       });
@@ -168,4 +168,28 @@
     io.observe(root);
     setTimeout(function () { var r = root.getBoundingClientRect(); if (r.top < window.innerHeight) reveal(); }, 3000);
   }
+})();
+
+/* Publication page: highlight the author name when it scrolls into view; magnifier follows the mouse */
+(function () {
+  var pp = document.querySelector('.pp');
+  if (!pp) return;
+  var lp = pp.querySelector('.loupe'), lz = pp.querySelector('.lz'), Z = 3.2;
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { pp.classList.add('play'); io.disconnect(); } });
+    }, { threshold: 0.6 });
+    io.observe(pp);
+  } else { pp.classList.add('play'); }
+  pp.addEventListener('pointermove', function (ev) {
+    if (ev.pointerType !== 'mouse') return;
+    var r = pp.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+    lz.style.width = (r.width * Z) + 'px'; lz.style.height = (r.height * Z) + 'px';
+    lp.style.left = x + 'px'; lp.style.top = y + 'px';
+    var half = lp.offsetWidth / 2;
+    lz.style.transform = 'translate(' + (half - x * Z) + 'px,' + (half - y * Z) + 'px)';
+    pp.classList.add('lens');
+  });
+  pp.addEventListener('pointerleave', function () { pp.classList.remove('lens'); });
+  pp.addEventListener('click', function () { pp.classList.remove('lens'); });
 })();
